@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ОПП</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+     
+     <script>
+     	function Human(name, age, sax, weight, height) {//конструктор для создания людей// 
+this.name = name; 
+this.age = age; 
+this.sax = sax; 
+this.weight = weight; 
+this.height = height; 
+} 
+
+var Eugene = new Human('Eugene', 26, 'man', 73, 183);//создаем человека Евгений// 
+var Elena = new Human('Elena', 23, 'woman', 63, 171);//создаем человека Елена// 
+
+var Worker = {//работающий человек// 
+workPlace: 'DTEC', 
+money: 5200, 
+work: function() { 
+console.log('is work'); 
+}, 
+}; 
+
+var Student = {//студент// 
+studyPlace: 'KPI', 
+stepend: 500, 
+watchSerials: function() { 
+console.log('Student is watch serials'); 
+}, 
+}; 
+
+Worker.__proto__ = Eugene; 
+Student.__proto__ = Elena; 
+
+console.log('Eugene:', Eugene); 
+console.log('Elena:', Elena); 
+console.log('____________________________'); 
+
+console.log('worker:', Worker); 
+console.log('student:', Student); 
+console.log('____________________________'); 
+
+console.log('worker name:', Worker.name); 
+console.log('student name:', Student.name);
+
+     	
+     </script>
+
+</head>
+<body>
+	
+</body>
+</html>

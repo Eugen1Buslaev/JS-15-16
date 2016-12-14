@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>API</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+
+</head>
+<body>
+<button>Нажми на меня</button>
+
+<script>
+function GoogleCallback (func, data) {//т.к. jQuery ожидает в качестве первого параметра данные, по этой причине создаем промежуточную callback функцию// 
+window[func](data); 
+}; 
+
+$('.button').on('click' , function(e) {//при нажатии на кнопку поиска срабатывает функция// 
+
+e.preventDefault(); //останавливаем реакцию кнопки предусмотреную по умолчанию// 
+var $text = $('.search').val();//находим текст введенный юзером// 
+
+
+$.ajax({//делаем аякс запрос на сервер гугл// 
+url: 'http://ajax.googleapis.com/ajax/services/search/web?v..'+ $text +'&rsz=8&callback=GoogleCallback&context=?', 
+dataType: "jsonp", 
+success: function (data) {//ф-я выполняемая по приходу ответа от сервера// 
+var ul = document.createElement("ul"); 
+$.each(data.results, function(i, val){ 
+var li = document.createElement("li"); 
+li.innerHTML = '<a href="'+val.url+'" title="'+val.url+'" target="_blank">'+val.title+"</a> - "+val.content; 
+ul.appendChild(li); 
+}); 
+$('.results').html(ul); 
+} 
+
+}); 
+}); 	
+
+
+</script>	
+</body>
+</html>
